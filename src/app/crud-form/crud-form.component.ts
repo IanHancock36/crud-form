@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 import {
   FormControl,
   FormGroup,
@@ -8,6 +9,7 @@ import {
 } from '@angular/forms';
 
 export interface DailyTasks {
+  id?: string | null | undefined;
   gallonWater?: boolean | null | undefined;
   tenPages?: boolean | null | undefined;
   dailyWorkout?: boolean | null | undefined;
@@ -25,6 +27,7 @@ export interface DailyTasks {
 export class CrudFormComponent {
   submittedForms: DailyTasks[] = [];
   submittedValue: DailyTasks = {
+    id: uuidv4() || null,
     gallonWater: false || null,
     tenPages: false || null,
     dailyWorkout: false || null,
@@ -43,5 +46,6 @@ export class CrudFormComponent {
     this.submittedValue = this.dailyTasksForm.value;
     this.submittedForms.push(this.submittedValue);
     this.dailyTasksForm.reset();
+    console.log(this.submittedValue.id)
   }
 }
