@@ -1,13 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 export interface DailyTask {
-  gallonWater: boolean | null;
-  tenPages: boolean | null;
-  dailyWorkout: boolean | null;
-  decompressTime: boolean | null;
-  dailyTask: string | null;
+  gallonWater?: boolean | null|undefined;
+  tenPages?: boolean | null| undefined;
+  dailyWorkout?: boolean | null| undefined;
+  decompressTime?: boolean | null| undefined;
+  dailyTask?: string | null | undefined;
 }
 
 @Component({
@@ -18,7 +23,13 @@ export interface DailyTask {
   styleUrl: './crud-form.component.css',
 })
 export class CrudFormComponent {
-  submittedValue: any
+  submittedValue: DailyTask = {
+    gallonWater:  false || null,
+    tenPages: false || null,
+    dailyWorkout: false || null,
+    decompressTime: false|| null,
+    dailyTask: '' || null,
+  };
   dailyTasksForm = new FormGroup({
     gallonWater: new FormControl(false, Validators.required),
     tenPages: new FormControl(false, Validators.required),
@@ -28,6 +39,6 @@ export class CrudFormComponent {
   });
 
   onSubmit() {
-    this.submittedValue = this.dailyTasksForm.value;
+    this.submittedValue = this.dailyTasksForm.value
   }
 }
