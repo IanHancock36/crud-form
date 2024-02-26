@@ -23,8 +23,12 @@
       <textarea id="dailyTask" rows="4" formControlName="dailyTask"></textarea>
     </div>
     <button [disabled]="!dailyTasksForm.valid" type="submit">Submit</button>
-    @if(submittedValue){
+    <!-- @if(submittedValue){
     {{ dailyTasksForm.value | json }}
-    }
+    } -->
+      <div *ngFor ="let submission of submittedForms">
+ <div>Daily Task: {{ submission.dailyTask }}</div>
+  </div>
   </form>
+
 </div>

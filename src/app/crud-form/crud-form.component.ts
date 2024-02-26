@@ -7,11 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 
-export interface DailyTask {
-  gallonWater?: boolean | null|undefined;
-  tenPages?: boolean | null| undefined;
-  dailyWorkout?: boolean | null| undefined;
-  decompressTime?: boolean | null| undefined;
+export interface DailyTasks {
+  gallonWater?: boolean | null | undefined;
+  tenPages?: boolean | null | undefined;
+  dailyWorkout?: boolean | null | undefined;
+  decompressTime?: boolean | null | undefined;
   dailyTask?: string | null | undefined;
 }
 
@@ -23,11 +23,12 @@ export interface DailyTask {
   styleUrl: './crud-form.component.css',
 })
 export class CrudFormComponent {
-  submittedValue: DailyTask = {
-    gallonWater:  false || null,
+  submittedForms: DailyTasks[] = [];
+  submittedValue: DailyTasks = {
+    gallonWater: false || null,
     tenPages: false || null,
     dailyWorkout: false || null,
-    decompressTime: false|| null,
+    decompressTime: false || null,
     dailyTask: '' || null,
   };
   dailyTasksForm = new FormGroup({
@@ -39,6 +40,8 @@ export class CrudFormComponent {
   });
 
   onSubmit() {
-    this.submittedValue = this.dailyTasksForm.value
+    this.submittedValue = this.dailyTasksForm.value;
+    this.submittedForms.push(this.submittedValue);
+    this.dailyTasksForm.reset();
   }
 }
