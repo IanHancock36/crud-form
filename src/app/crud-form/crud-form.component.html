@@ -1,5 +1,5 @@
 <div class="form-container">
-  <form [formGroup]="dailyTasks">
+  <form [formGroup]="dailyTasksForm" (submit)="onSubmit()">
     <div class="checkbox-container">
       <div class="checkbox-row">
         <label for="dailyTask">Gallon Of Water</label>
@@ -7,20 +7,24 @@
       </div>
       <div class="checkbox-row">
         <label for="dailyTask">10 Pages Personal Development</label>
-        <input type="checkbox" formControlName="tenPages"/>
+        <input type="checkbox" formControlName="tenPages" />
       </div>
       <div class="checkbox-row">
         <label for="dailyTask">Workout</label>
-        <input type="checkbox" formControlName="dailyWorkout"/>
+        <input type="checkbox" formControlName="dailyWorkout" />
       </div>
       <div class="checkbox-row">
         <label for="dailyTask">Decompress Time</label>
-        <input type="checkbox"formControlName="decompressTime" />
+        <input type="checkbox" formControlName="decompressTime" />
       </div>
     </div>
     <div>
       <label for="dailyTask">Daily Task:</label>
       <textarea id="dailyTask" rows="4" formControlName="dailyTask"></textarea>
     </div>
+    <button type="submit">Submit</button>
+    @if(submittedValue){
+    {{ dailyTasksForm.value | json }}
+    }
   </form>
 </div>
