@@ -22,7 +22,7 @@
       <label for="dailyTask">Daily Task:</label>
       <textarea id="dailyTask" rows="4" formControlName="dailyTask"></textarea>
     </div>
-    <button type="submit">Submit</button>
+    <button [disabled]="!dailyTasksForm.valid" type="submit">Submit</button>
     @if(submittedValue){
     {{ dailyTasksForm.value | json }}
     }
