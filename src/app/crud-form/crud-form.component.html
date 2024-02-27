@@ -26,9 +26,9 @@
     <!-- @if(submittedValue){
     {{ dailyTasksForm.value | json }}
     } -->
-      <div *ngFor ="let submission of submittedForms">
- <div>Daily Task: {{ submission.dailyTask }}</div>
-  </div>
+    <div *ngFor="let submission of submittedForms">
+      <div>Daily Task: {{ submission.dailyTask }}</div>
+      <button (click)="deleteDailyTask(submission.id)">Delete Task</button>
+    </div>
   </form>
-
 </div>

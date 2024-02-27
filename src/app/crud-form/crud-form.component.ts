@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import {
   FormControl,
@@ -25,6 +25,7 @@ export interface DailyTasks {
   styleUrl: './crud-form.component.css',
 })
 export class CrudFormComponent {
+
   submittedForms: DailyTasks[] = [];
   submittedValue: DailyTasks = {
     id: uuidv4() || null,
@@ -46,6 +47,9 @@ export class CrudFormComponent {
     this.submittedValue = this.dailyTasksForm.value;
     this.submittedForms.push(this.submittedValue);
     this.dailyTasksForm.reset();
-    console.log(this.submittedValue.id)
+    console.log(this.submittedValue.id);
+  }
+  deleteDailyTask(taskId: any) {
+   this.submittedForms = this.submittedForms.filter((task) => task.id !== taskId);
   }
 }
