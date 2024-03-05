@@ -1,3 +1,14 @@
-<input type="text" (input)="handleChange($event)"/>
-<p>{{characterName
-}}</p>
+<input type="text" (input)="handleChange($event)" />
+<p>{{ characterName }}</p>
+<ng-container
+  *ngIf="characterName.length; then characterNameList; else noCharacters"
+>
+</ng-container>
+
+<ng-template #characterNameList>
+  <h1>THE NAMES</h1>
+</ng-template>
+
+<ng-template #noCharacters>
+  <h1>No characters ERRRROR</h1>
+</ng-template>
