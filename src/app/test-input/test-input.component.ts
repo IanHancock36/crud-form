@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './test-input.component.css'
 })
 export class TestInputComponent {
+characterName: string = ""
 
+handleChange(event : any){
+  this.characterName = event?.target.value
+  console.log(this.characterName)
+}
 }
