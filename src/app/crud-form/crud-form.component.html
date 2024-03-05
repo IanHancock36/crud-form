@@ -2,20 +2,20 @@
   <form [formGroup]="dailyTasksForm" (submit)="onSubmit()">
     <div class="checkbox-container">
       <div class="checkbox-row">
-        <label for="dailyTask">Gallon Of Water</label>
-        <input type="checkbox" formControlName="gallonWater" />
+        <label for="gallonWater">Gallon Of Water</label>
+        <input type="checkbox" formControlName="gallonWater" id="gallonWater" />
       </div>
       <div class="checkbox-row">
-        <label for="dailyTask">10 Pages Personal Development</label>
-        <input type="checkbox" formControlName="tenPages" />
+        <label for="tenPages">10 Pages Personal Development</label>
+        <input type="checkbox" formControlName="tenPages" id="tenPages" />
       </div>
       <div class="checkbox-row">
-        <label for="dailyTask">Workout</label>
-        <input type="checkbox" formControlName="dailyWorkout" />
+        <label for="dailyWorkout">Workout</label>
+        <input type="checkbox" formControlName="dailyWorkout" id="dailyWorkout" />
       </div>
       <div class="checkbox-row">
-        <label for="dailyTask">Decompress Time</label>
-        <input type="checkbox" formControlName="decompressTime" />
+        <label for="decompressTime">Decompress Time</label>
+        <input type="checkbox" formControlName="decompressTime" id="decompressTime" />
       </div>
     </div>
     <div>
@@ -23,15 +23,14 @@
       <textarea id="dailyTask" rows="4" formControlName="dailyTask"></textarea>
     </div>
     <button [disabled]="!dailyTasksForm.valid" type="submit">Submit</button>
-    @if(submittedValue){
-    {{ dailyTasksForm.value | json }}
-    }
+  </form>
+
+  <div *ngIf="submittedForms.length > 0">
     <div *ngFor="let submission of submittedForms">
       <div>Daily Task: {{ submission.dailyTask }}</div>
-      <div>Daily Task: {{ submission.id }}</div>
       <button (click)="deleteDailyTask(submission.id)">Delete Task</button>
-       <button (click)="editDailyTask(submission.id, submission.dailyTask)">Edit</button>
-      <button (click)="repostEditedTask(submission.dailyTask)">Repost</button>
+      <button (click)="editDailyTask(submission.id, submission.dailyTask)">Edit</button>
+      <button (click)="repostEditedTask(submission)">Repost</button>
     </div>
-  </form>
+  </div>
 </div>

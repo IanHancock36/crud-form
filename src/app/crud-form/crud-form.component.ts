@@ -27,15 +27,6 @@ export interface DailyTasks {
 export class CrudFormComponent {
   submittedForms: DailyTasks[] = [];
 
-  submittedValue: DailyTasks = {
-    id: uuid4(),
-    gallonWater: false || null,
-    tenPages: false || null,
-    dailyWorkout: false || null,
-    decompressTime: false || null,
-    dailyTask: '' || null,
-  };
-
   dailyTasksForm = new FormGroup({
     gallonWater: new FormControl(false, Validators.required),
     tenPages: new FormControl(false, Validators.required),
@@ -45,32 +36,29 @@ export class CrudFormComponent {
   });
 
   onSubmit() {
-    this.submittedValue = {
+    const submittedValue: DailyTasks = {
       id: uuid4(),
       ...this.dailyTasksForm.value,
     };
-    this.submittedForms.push(this.submittedValue);
+    this.submittedForms.push(submittedValue);
     this.dailyTasksForm.reset();
-    console.log(this.submittedValue.id);
   }
-  deleteDailyTask(taskId: any) {
-    this.submittedForms = this.submittedForms.filter(
-      (task) => task.id !== taskId
-    );
+
+  deleteDailyTask(taskId: string | null | undefined) {
+    if (taskId) {
+      this.submittedForms = this.submittedForms.filter((task) => task.id !== taskId);
+    }
   }
-  editDailyTask(taskId: any, newTaskText: any) {
-  const taskIndex = this.submittedForms.findIndex(task => task.id === taskId);
-  if (taskIndex !== -1) {
 
-    this.submittedForms[taskIndex].dailyTask = newTaskText;
-
-  
-    this.repostEditedTask(this.submittedForms[taskIndex]);
+  editDailyTask(taskId: string | null | undefined, newTaskText: string | null | undefined) {
+    const taskIndex = this.submittedForms.findIndex((task) => task.id === taskId);
+    if (taskIndex !== -1 && newTaskText) {
+      this.submittedForms[taskIndex].dailyTask = newTaskText;
+    }
   }
-}
 
-repostEditedTask(task: any) {
-  
-
-}
+  repostEditedTask(updatedTask: DailyTasks) {
+    // You can perform any additional logic here
+    console.log('Task reposted:', updatedTask);
+  }
 }
